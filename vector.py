@@ -24,29 +24,29 @@ def is_equal(lhs, rhs):
 	else:
 		print "not equal\n"
 	
-def magnitude(lhs, rhs):
+def magnitude(lhs):
 	x_sq = lhs[0] * lhs[0]
-	y_sq = rhs[1] * rhs[1]
+	y_sq = lhs[1] * lhs[1]
 	sum = x_sq + y_sq
 	mag = math.sqrt(sum) 
 	return sum 
 	
 def normalize(lhs, rhs):
 	vec = [0, 0]
-	vec[0] = lhs[0] / magnitude(lhs, rhs) 		
-	vec[1] = rhs[1] / magnitude(lhs, rhs) 
+	vec[0] = lhs[0] / magnitude(lhs) 		
+	vec[1] = rhs[1] / magnitude(lhs) 
 	return vec 
 		
 def dot(lhs, rhs):
 	new_vec = (lhs[0]* rhs[0] + lhs[1]* rhs[1])
 	return new_vec
 	
-vec_one = [2, 4]
-vec_two = [1, 1]
+vec_one = [10, 14]
+vec_two = [11, 33]
 print add(vec_one, vec_two)
 print sub(vec_one, vec_two)
 print multi(vec_one, vec_two)
-print magnitude(vec_one, vec_two)
+print magnitude(vec_one)
 print is_equal(vec_one, vec_two)
 print normalize(vec_one, vec_two)
 	
