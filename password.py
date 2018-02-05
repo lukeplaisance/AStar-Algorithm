@@ -3,17 +3,15 @@
 from random import *
 
 def password():
-    '''function to generato password'''
+    '''function to generate password'''
     f = open("passwords.txt", "r")
-    password = []
-    current_list = []
+    words = []
     for word in f:
         word = word.replace("\n", "")
-        password.append(word)
-    for word in f:
-        word = word.replace("a", "@")
-        password.append(word)
+        words.append(word)
 
-    print password
+    rand_word = randint(0,len(words) - 1)
+    passwords = words[rand_word]
+    print passwords
 
 password()
