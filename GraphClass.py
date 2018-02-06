@@ -4,6 +4,7 @@ from vector2 import Vector2
 from NodeClass import Node
 
 class Graph(object):
+    '''class that makes the grid'''
     def __init__(self, width, height):
         self.width = width
         self.height = height
@@ -11,12 +12,15 @@ class Graph(object):
 
     def create_grid(self):
         '''creating the grid with nodes'''
-        num_nodes = self.width * self.height
-        x = 0
-        y = 0
-        for i in range(0, (num_nodes)):
-            new_node = Node(x, y)
-            self.nodes.append(new_node)
+        for i in range(0, self.width):
+            for j in range(0, self.height):
+                new_node = Node(Vector2(i, j))
+                self.nodes.append(new_node)
+
+
+GRID = Graph(10, 10)
+GRID.create_grid()
+print GRID
 
 
     

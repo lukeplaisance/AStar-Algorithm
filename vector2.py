@@ -49,10 +49,4 @@ class Vector2:
     		'''outputs the vectors into the console'''
 		print str(self.x_position) + "," +  str(self.y_position)
 
-
-vec_one = Vector2(2, 2)
-vec_two = Vector2(4, 4)
-vec_three = vec_one + vec_two
-vec_three.output()
-
 	

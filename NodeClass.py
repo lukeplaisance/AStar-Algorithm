@@ -6,7 +6,7 @@ class Node(object):
     '''class for the nodes'''
     def __init__(self, pos):
         '''constructor'''
-        self.pos = Vector2(pos.xpos, pos.ypos)
+        self.pos = Vector2(pos.x_position, pos.y_position)
         self.parent = None
         self.h_score = 0
         self.g_score = 0
