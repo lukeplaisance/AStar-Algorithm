@@ -11,7 +11,7 @@ class Node(object):
         self.h_score = 0
         self.g_score = 0
         self.f_score = 0
-        self.is_taversable = True
+        self.is_traversable = True
 
     def set_parent(self, other):
         '''sets the parent of a node to another'''
@@ -42,7 +42,7 @@ class Node(object):
 
     def set_non_trav(self):
         '''sets a node to be non traversable'''
-        self.is_taversable = False
+        self.is_traversable = False
         return self.is_taversable
 
 
