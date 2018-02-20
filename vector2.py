@@ -25,6 +25,12 @@ class Vector2:
 					  self.y_position * other)
 		return vec
 
+	def __eq__(self, other):
+    		'''compares two vectors to each other'''
+		vec = Vector2(self.x_position == other.x_position,
+					  self.y_position == other.y_position)
+		return vec
+
 	def magnitude(self):
     		'''returns the magnitude'''
 		xsq = self.x_position * self.x_position
