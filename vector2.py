@@ -27,9 +27,9 @@ class Vector2:
 
 	def __eq__(self, other):
     		'''compares two vectors to each other'''
-		vec = Vector2(self.x_position == other.x_position,
-					  self.y_position == other.y_position)
-		return vec
+		if self.x_position == other.x_position and self.y_position == other.y_position:
+    			return True
+		return False
 
 	def magnitude(self):
     		'''returns the magnitude'''
