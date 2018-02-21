@@ -20,17 +20,31 @@ class Node(object):
 
     def calc_g(self, other):
         '''returns the G score of the node'''
-        if (self.pos.x_position is other.pos.x_position
-        or self.pos.y_position is other.pos.y_position):
-            self.g_score += 10
-        else:
-            self.g_score += 14
-        return self.g_score
+        if self.parent is None:
+            if ((self.pos.x_position is other.pos.x_position and
+                self.pos.y_position is not other.pos.y_position)
+            or (self.pos.x_position is not other.pos.x_position and
+                self.pos.y_position is other.pos.y_position)):
+                self.g_score = other.g_score + 10
+            else:
+                self.g_score = other.g_score + 14
+        elif self.parent is not None:
+            tent_g = self.g_score
+            if ((self.pos.x_position is other.pos.x_position and
+                self.pos.y_position is not other.pos.y_position)
+            or (self.pos.x_position is not other.pos.x_position and
+                self.pos.y_position is other.pos.y_position)):
+                tent_g = other.g_score + 10
+            else:
+                tent_g = other.g_score + 14
+            if tent_g < self.g_score:
+                self.g_score = tent_g
+                self.set_parent(other)
 
     def calc_h(self, other):
         '''returns the H score of the node'''
-        x_distance = other.pos.x_position - self.pos.x_position
-        y_distance = other.pos.y_position - self.pos.y_position
+        x_distance = abs(other.pos.x_position - self.pos.x_position)
+        y_distance = abs(other.pos.y_position - self.pos.y_position)
         total = x_distance + y_distance
         self.h_score = total * 10
         return self.h_score
