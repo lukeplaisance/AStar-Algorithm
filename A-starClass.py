@@ -6,7 +6,7 @@ from vector2 import Vector2
 
 class Astar(object):
     '''class for the A* algorithm'''
-    def __init__(self, graph, start, end):
+    def __init__(self, start, end, graph):
         '''constructor'''
         self.grid = graph
         self.open_list = []
@@ -25,10 +25,11 @@ class Astar(object):
         #Add the starting square (or node) to the open list.
         self.open_list.append(self.current_node)
         #Repear until goal is in closed list or open list is empty
-        while self.current_node not in self.close_list:
+        while not self.close_list.__contains__(self.end_node):
             #Look for lowest f in open list
             self.get_current()
             #Switch lowest f to closed list
+            self.open_list.remove(self.current_node)
             self.close_list.append(self.current_node)
             #get neighbors of lowest f
             neighbors = self.grid.get_neighbors(self.current_node)
@@ -39,7 +40,7 @@ class Astar(object):
                     # its current parent
                     # If it is a better path reparent it and re calc f score and re assign g score
                 #if not in open list
-                    #calcualte g score normally
+                #calcualte g score normally
                 #calc h score
                 #calc f score
                 if neighbor.is_traversable is True and not self.close_list.__contains__(neighbor):
@@ -49,22 +50,21 @@ class Astar(object):
                         neighbor.calc_h(self.end_node)
                         neighbor.calc_f()
                         neighbor.set_parent(self.current_node)
-                        self.close_list.append(self.current_node)
                     elif self.open_list.__contains__(neighbor):
                         neighbor.calc_g(self.current_node)
                         neighbor.calc_h(self.end_node)
                         neighbor.calc_f()
-                        self.close_list.append(self.current_node)
-        path = []
 
 
 
 GRID = Graph(10, 10)
 GRID.create_grid()
-POS_1 = Node(Vector2(4, 5))
-POS_2 = Node(Vector2(7, 5))
-TEST_1 = Astar(GRID, POS_1, POS_2)
-GRID.get_neighbors(POS_1)
+START = GRID.nodes[53]
+END = GRID.nodes[67]
+GRID.nodes[55].set_non_trav()
+GRID.nodes[65].set_non_trav()
+GRID.nodes[75].set_non_trav()
+TEST_1 = Astar(START, END, GRID)
 TEST_1.path()
 a = 60
                     

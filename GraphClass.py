@@ -18,19 +18,19 @@ class Graph(object):
                 self.nodes.append(new_node)
 
     def get_neighbors(self, node):
-        '''function to find the neighbors or the current node'''
-        valid_neighbors = [(node.pos + Vector2(0, 1)), #Top
-                          (node.pos + Vector2(0, -1)), #Bottom
-                          (node.pos + Vector2(-1, 0)), #Left
-                          (node.pos + Vector2(1, 0)), #Right
-                          (node.pos + Vector2(1, 1)), #Top Right
-                          (node.pos + Vector2(-1, 1)), #Top Left
-                          (node.pos + Vector2(1, -1)), #Bot Right
-                          (node.pos + Vector2(-1, -1))] #Bot Left
+        '''function to find the neighbors of the current node'''
+        valid_neighbors = [(node.position + Vector2(0, 1)), #Top
+                          (node.position + Vector2(0, -1)), #Bottom
+                          (node.position + Vector2(-1, 0)), #Left
+                          (node.position + Vector2(1, 0)), #Right
+                          (node.position + Vector2(1, 1)), #Top Right
+                          (node.position + Vector2(-1, 1)), #Top Left
+                          (node.position + Vector2(1, -1)), #Bot Right
+                          (node.position + Vector2(-1, -1))] #Bot Left
         neighbors = []
         for n in self.nodes:
             for pos in valid_neighbors:
-                if n.pos == pos:
+                if n.position == pos:
                     neighbors.append(n)
         return neighbors
 
