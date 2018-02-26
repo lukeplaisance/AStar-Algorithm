@@ -55,16 +55,42 @@ class Astar(object):
                         neighbor.calc_h(self.end_node)
                         neighbor.calc_f()
 
+        paths = []
+        while self.current_node.parent:
+            paths.append(self.current_node)
+            self.current_node = self.current_node.parent
+        paths.append(self.current_node.parent)
 
+
+    def display_graph(self):
+        '''function to display the graph in the console'''
+        count = 0
+        for nodes in self.grid.nodes:
+            if count is self.grid.width:
+                print '\n'
+            if nodes.is_traversable is False:
+                print '[X]'
+            elif nodes.is_start:
+                print '[S]'
+            elif nodes.is_goal:
+                print '[G]'
+            elif self.grid.nodes.__contains__(nodes):
+                print '[*]'
+            else:
+                print '[ ]'
+            count += 1
 
 GRID = Graph(10, 10)
 GRID.create_grid()
 START = GRID.nodes[53]
-END = GRID.nodes[67]
+START.is_start = True
+END = GRID.nodes[86]
+END.is_goal = True
 GRID.nodes[55].set_non_trav()
 GRID.nodes[65].set_non_trav()
 GRID.nodes[75].set_non_trav()
 TEST_1 = Astar(START, END, GRID)
 TEST_1.path()
+TEST_1.display_graph()
 a = 60
                     
