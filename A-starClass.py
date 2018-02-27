@@ -11,6 +11,7 @@ class Astar(object):
         self.grid = graph
         self.open_list = []
         self.close_list = []
+        self.paths = None
         self.current_node = start
         self.end_node = end
 
@@ -56,10 +57,11 @@ class Astar(object):
                         neighbor.calc_f()
 
         paths = []
-        while self.current_node.parent:
+        while self.current_node.parent is not None:
             paths.append(self.current_node)
             self.current_node = self.current_node.parent
         paths.append(self.current_node.parent)
+        self.paths = paths
 
 
     def display_graph(self):
@@ -67,24 +69,25 @@ class Astar(object):
         count = 0
         for nodes in self.grid.nodes:
             if count is self.grid.width:
-                print '\n'
+                print '\n',
+                count = 0
             if nodes.is_traversable is False:
-                print '[X]'
+                print '[X]',
             elif nodes.is_start:
-                print '[S]'
+                print '[S]',
             elif nodes.is_goal:
-                print '[G]'
+                print '[G]',
             elif self.grid.nodes.__contains__(nodes):
-                print '[*]'
+                print '[*]',
             else:
                 print '[ ]'
             count += 1
 
 GRID = Graph(10, 10)
 GRID.create_grid()
-START = GRID.nodes[53]
+START = GRID.nodes[63]
 START.is_start = True
-END = GRID.nodes[86]
+END = GRID.nodes[67]
 END.is_goal = True
 GRID.nodes[55].set_non_trav()
 GRID.nodes[65].set_non_trav()
