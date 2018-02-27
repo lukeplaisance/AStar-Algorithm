@@ -12,6 +12,7 @@ class Astar(object):
         self.open_list = []
         self.close_list = []
         self.paths = None
+        self.start_node = start
         self.current_node = start
         self.end_node = end
 
@@ -55,7 +56,6 @@ class Astar(object):
                         neighbor.calc_g(self.current_node)
                         neighbor.calc_h(self.end_node)
                         neighbor.calc_f()
-
         paths = []
         while self.current_node.parent is not None:
             paths.append(self.current_node)
@@ -63,35 +63,34 @@ class Astar(object):
         paths.append(self.current_node.parent)
         self.paths = paths
 
-
     def display_graph(self):
-        '''function to display the graph in the console'''
-        count = 0
-        for nodes in self.grid.nodes:
-            if count is self.grid.width:
-                print '\n',
-                count = 0
-            if nodes.is_traversable is False:
-                print '[X]',
-            elif nodes.is_start:
-                print '[S]',
-            elif nodes.is_goal:
-                print '[G]',
-            elif self.grid.nodes.__contains__(nodes):
-                print '[*]',
+        '''function to display the grid and the path to the goal node'''
+        line = ""
+        for node in self.grid.nodes:
+            if node == self.end_node:
+                line += "[G]"
+            elif node == self.start_node:
+                line += "[S]"
+            elif self.paths.__contains__(node):
+                line += "[*]"
+            elif not node.is_traversable:
+                line += "[X]"
             else:
-                print '[ ]'
-            count += 1
+                line += "[ ]"
+            if node.position.y_position == self.grid.width - 1:
+                print line
+                line = ""
+
 
 GRID = Graph(10, 10)
 GRID.create_grid()
-START = GRID.nodes[63]
+START = GRID.nodes[53]
 START.is_start = True
-END = GRID.nodes[67]
+END = GRID.nodes[57]
 END.is_goal = True
+GRID.nodes[45].set_non_trav()
 GRID.nodes[55].set_non_trav()
 GRID.nodes[65].set_non_trav()
-GRID.nodes[75].set_non_trav()
 TEST_1 = Astar(START, END, GRID)
 TEST_1.path()
 TEST_1.display_graph()
