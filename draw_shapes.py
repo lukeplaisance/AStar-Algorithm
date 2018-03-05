@@ -19,4 +19,3 @@ class Square(Shape):
     def __inti__(self, pos, color, scale, surface):
         self.scale = scale
         Shape.__init__(self, pos, color, surface)
-        

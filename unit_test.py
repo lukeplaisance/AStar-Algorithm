@@ -180,14 +180,7 @@ def test_function(func):
 
 def main():
     '''the main'''
-    grid = Graph(10, 10)
-    start = grid.nodes[53]
-    end = grid.nodes[57]
-    num_test = 10
-    num_passed = 0
-    test1 = Astar(start, end, grid)
-    verdict = test_function(test1.path)
-    num_passed = num_passed + verdict
-    print str.format("Number of Test::{0} Number Passed::{1}", num_test, num_passed)
+    test = Astar()
+    test_function(test.path)
 
 main()
