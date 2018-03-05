@@ -2,6 +2,8 @@
 #pylint: disable = C0330
 import pygame
 from vector2 import Vector2
+from draw_shapes import Shape
+from draw_shapes import Rectangle
 
 def main():
     '''function to test pygame'''
@@ -23,10 +25,9 @@ def main():
             m_position = m_position + Vector2(0, 1)
         if pygame.key.get_pressed()[pygame.K_d] != 0:
             m_position = m_position + Vector2(1, 0)
-        pygame.draw.rect(screen, (100, 40, 130), (m_position.x_position,
-                         m_position.y_position, 50, 50))
+        rectangle = Rectangle(m_position, (100, 0, 45), screen)
 
-
+        rectangle.draw()
         pygame.display.flip()
 
 
