@@ -28,14 +28,14 @@ class Rectangle(Shape):
 
 class Line(Shape):
     '''class for the properties of a line'''
-    def __init__(self, surface, color, pos, length):
-        Shape.__init__(self, surface, color, pos)
-        self.length = length
+    def __init__(self, surface, color, start_pos, end_pos, width):
+        Shape.__init__(self, surface, color, start_pos, end_pos, width)
+        self.width = width
 
     def draw_line(self):
         '''draws a line to the screen'''
-        pygame.draw.rect(self.surface, (self.color[0], self.color[1], self.color[2]),
-        (self.pos.x_position, self.pos.y_position, self.length))
+        pygame.draw.line(self.surface, (self.color[0], self.color[1], self.color[2]),
+        (self.pos.x_position, self.pos.y_position), self.length)
 
 class Circle(Shape):
     '''class for the properties of a circle'''
@@ -45,10 +45,5 @@ class Circle(Shape):
 
     def draw_circle(self):
         '''draws a circle to the screen'''
-        pygame.draw.rect(self.surface, (self.color[0], self.color[1], self.color[2]),
-        (self.pos.x_position, self.pos.y_position, self.radius))
-
-class Visual_Node(object):
-    '''class to visually see the node'''
-    def __init__(self, node):
-        self.node = node
+        pygame.draw.circle(self.surface, (self.color[0], self.color[1], self.color[2]),
+        (self.pos.x_position, self.pos.y_position), self.radius)

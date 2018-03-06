@@ -84,13 +84,19 @@ class Astar(object):
 
 GRID = Graph(10, 10)
 GRID.create_grid()
-START = GRID.nodes[53]
+START = GRID.nodes[99]
 START.is_start = True
-END = GRID.nodes[57]
+END = GRID.nodes[33]
 END.is_goal = True
+GRID.nodes[43].set_non_trav()
+GRID.nodes[44].set_non_trav()
 GRID.nodes[45].set_non_trav()
-GRID.nodes[55].set_non_trav()
-GRID.nodes[65].set_non_trav()
+GRID.nodes[46].set_non_trav()
+GRID.nodes[47].set_non_trav()
+GRID.nodes[48].set_non_trav()
+GRID.nodes[49].set_non_trav()
+GRID.nodes[56].set_non_trav()
+GRID.nodes[66].set_non_trav()
 TEST_1 = Astar(START, END, GRID)
 TEST_1.path()
 TEST_1.display_graph()
