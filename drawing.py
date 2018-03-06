@@ -2,8 +2,11 @@
 #pylint: disable = C0330
 import pygame
 from vector2 import Vector2
-from draw_shapes import Shape
 from draw_shapes import Rectangle
+from draw_shapes import Line
+from NodeClass import Node
+from GraphClass import Graph
+from A_starClass import Astar
 
 def main():
     '''function to test pygame'''
@@ -25,9 +28,9 @@ def main():
             m_position = m_position + Vector2(0, 1)
         if pygame.key.get_pressed()[pygame.K_d] != 0:
             m_position = m_position + Vector2(1, 0)
-        rectangle = Rectangle(m_position, (100, 0, 45), screen)
+        lin = Line(screen, (100, 20, 40), m_position, 20)
 
-        rectangle.draw()
+        
         pygame.display.flip()
 
 
