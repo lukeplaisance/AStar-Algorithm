@@ -7,31 +7,34 @@ from draw_shapes import Line
 from NodeClass import Node
 from GraphClass import Graph
 from A_starClass import Astar
+from visusal_grid import VisualGraph
+from visusal_grid import VisualNode
 
 def main():
     '''function to test pygame'''
     pygame.init()
-    screen = pygame.display.set_mode((1280, 720))
+    screen_width = 1265
+    screen_height = 720
+    screen = pygame.display.set_mode((screen_width, screen_height))
     screen.fill((0, 0, 0))
-    m_position = Vector2(450, 650)
-    rects = []
+    grid = Graph(45, 40)
+    grid.create_grid()
+    graph_visual = VisualGraph(grid, 28, screen)
+    start_node = pygame.draw.rect(screen, (0, 255, 0), [25, 25])
+    end_node = pygame.draw.rect(screen, (255, 0, 0), [25, 25])
+    graph_visual.gen_visual()
+
     while True:
         screen.fill((0, 0, 0))
+
+        for i in graph_visual.node_visual:
+            i.draw()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         pygame.event.pump()
-        if pygame.key.get_pressed()[pygame.K_w] != 0:
-            m_position = m_position + Vector2(0, -1)
-        if pygame.key.get_pressed()[pygame.K_a] != 0:
-            m_position = m_position + Vector2(-1, 0)
-        if pygame.key.get_pressed()[pygame.K_s] != 0:
-            m_position = m_position + Vector2(0, 1)
-        if pygame.key.get_pressed()[pygame.K_d] != 0:
-            m_position = m_position + Vector2(1, 0)
-        a_line = Line(screen, (100, 20, 40), 450, 650, 1)
+        #if evene.type == pygame.MOUSEBUTTONDOWN:
 
-        a_line.draw_line()
         pygame.display.flip()
 
 

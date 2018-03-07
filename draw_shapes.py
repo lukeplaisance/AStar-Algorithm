@@ -17,7 +17,7 @@ class Shape(object):
 
 class Rectangle(Shape):
     '''class for the properties of a rectangle'''
-    def __inti__(self, surface, color, pos, scale):
+    def __init__(self, surface, color, pos, scale):
         Shape.__init__(self, surface, color, pos)
         self.scale = scale
 
