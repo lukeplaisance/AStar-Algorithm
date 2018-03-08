@@ -7,7 +7,7 @@ class VisualNode(object):
     '''class to see the node on the grid'''
     def __init__(self, node, surface, pos, scale):
         self.node = node
-        self.shape = Rectangle(surface, (200, 200, 200), pos, scale)
+        self.shape = Rectangle(surface, (0, 0, 0), pos, scale)
 
     def draw(self):
         '''function to draw the node'''
