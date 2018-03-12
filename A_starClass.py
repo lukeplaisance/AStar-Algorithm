@@ -23,6 +23,7 @@ class Astar(object):
         self.current_node = self.open_list[0]
 
     def path(self):
+        self.current_node = self.start_node
         '''function to find the easiest path to the end node'''
         #Add the starting square (or node) to the open list.
         self.open_list.append(self.current_node)

@@ -20,11 +20,13 @@ def main():
     grid = Graph(45, 40)
     grid.create_grid()
     graph_visual = VisualGraph(grid, 28, screen)
-    start_node = Rectangle(screen, (0, 255, 0), Vector2(0, 419), 25)
-    end_node = Rectangle(screen, (255, 0, 0), Vector2(700, 419), 25)
+    start_node = Rectangle(screen, (0, 255, 0), Vector2(0, 419), (25, 25))
+    end_node = Rectangle(screen, (255, 0, 0), Vector2(700, 419), (25, 25))
     graph_visual.gen_visual()
-    a_star = Astar(start_node, end_node, grid)
     draw_path = []
+    start_node_good = None
+    end_node_good = None
+    a_star = Astar(start_node_good, end_node_good, grid)
     drag_start = False
     drag_end = False
     pressed_space = False
@@ -41,52 +43,55 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-            mouse_x, mouse_y = pygame.mouse.get_pos()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    if start_node.pygame_object.collidepoint(event.pos):
-                        drag_start = True
-                        offset_x = start_node.pos.x_position - mouse_x
-                        offset_y = start_node.pos.y_position - mouse_y
-                    elif end_node.pygame_object.collidepoint(event.pos):
-                        drag_end = True
-                        offset_x = end_node.pos.x_position - mouse_x
-                        offset_y = end_node.pos.y_position - mouse_y
-            elif event.type == pygame.MOUSEBUTTONUP:
-                if event.button == 1:
-                    count = 0
-                    if drag_start is True or drag_end is True:
-                        for node in grid.nodes:
-                            if start_node.pygame_object.colliderect(node):
-                                start_node.left = grid.nodes[count].get_x()
-                                start_node.top = grid.nodes[count].get_y()
-                                drag_start = False
-                            if end_node.pygame_object.colliderect(node):
-                                end_node.left = grid.nodes[count].get_x()
-                                end_node.top = grid.nodes[count].get_y()
-                                drag_end = False
-                            count += 1
-            elif event.type == pygame.MOUSEMOTION:
-                if drag_start:
-                    start_node.pos.x_position = mouse_x + offset_x
-                    start_node.pos.x_position = mouse_y + offset_y
-                elif drag_end:
-                    end_node.pos.x_position = mouse_x + offset_x
-                    end_node.pos.x_position = mouse_y + offset_y
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                if start_node.pygame_object.collidepoint(event.pos):
+                    drag_start = True
+                elif end_node.pygame_object.collidepoint(event.pos):
+                    drag_end = True
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:
+                if drag_start is True:
+                    for node in graph_visual.node_visual:
+                        if start_node.pygame_object.colliderect(node.shape.rect):
+                            start_node.pos.x_position = node.shape.pos.x_position
+                            start_node.pos.y_position = node.shape.pos.y_position
+                            start_node_good = node
+                            a_star.start_node = start_node_good.node
+                            drag_start = False
+                if drag_end is True:
+                    for node in graph_visual.node_visual:
+                        if end_node.pygame_object.colliderect(node.shape.rect):
+                            end_node.pos.x_position = node.shape.pos.x_position
+                            end_node.pos.y_position = node.shape.pos.y_position
+                            end_node_good = node
+                            a_star.end_node = end_node_good.node
+                            drag_end = False
+        elif event.type == pygame.MOUSEMOTION:
+            if drag_start:
+                start_node.pos.x_position = mouse_x
+                start_node.pos.y_position = mouse_y
+            elif drag_end:
+                end_node.pos.x_position = mouse_x
+                end_node.pos.y_position = mouse_y
 
-            if pygame.key.get_pressed()[pygame.K_SPACE]:
-                pressed_space = True
-                a_star.path()
-            if pressed_space:
-                count = 0
-                while count <= len(draw_path) - 1:
-                    path_line = Line(screen, (0, 200, 0), grid.start_pos[count],
-                                     grid.end_pos[count], 3)
-                    draw_path.append(path_line)
-                    path_line.draw_line()
-                count += 1
+        if pygame.key.get_pressed()[pygame.K_SPACE]:
+            pressed_space = True
+            a_star.path()
+            draw_path = a_star.paths
+            a = 0
+        if pressed_space:
+            count = 0
+            while count <= len(draw_path) - 1:
+                path_line = Line(screen, (0, 200, 0), grid.start_pos[count],
+                                    grid.end_pos[count], 3)
+                draw_path.append(path_line)
+                path_line.draw_line()
+            count += 1
 
-            pygame.display.flip()
+        pygame.display.update()
+        pygame.display.flip()
 
 
 

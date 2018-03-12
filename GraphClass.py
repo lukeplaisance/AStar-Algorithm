@@ -34,4 +34,8 @@ class Graph(object):
                     neighbors.append(n)
         return neighbors
 
+    def __getitem__(self, index):
+        '''overloading the index operator'''
+        return self.nodes[index]
+
     
