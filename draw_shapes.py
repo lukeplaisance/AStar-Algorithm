@@ -20,33 +20,34 @@ class Rectangle(Shape):
     def __init__(self, surface, color, pos, scale):
         Shape.__init__(self, surface, color, pos)
         self.pygame_object = None
-        self.scale_x = scale
-        self.scale_y = scale
+        self.scale = scale
 
     def draw_rect(self):
         '''draws a square to the screen'''
         self.pygame_object = pygame.draw.rect(self.surface, (self.color[0],
         self.color[1], self.color[2]), (self.pos.x_position, self.pos.y_position),
-        self.scale)
+        self.scale[0], self.scale[1])
 
 class Line(Shape):
     '''class for the properties of a line'''
     def __init__(self, surface, color, start_pos, end_pos, width):
         Shape.__init__(self, surface, color, start_pos, end_pos, width)
         self.width = width
+        self.pygame_object = None
 
     def draw_line(self):
         '''draws a line to the screen'''
-        pygame.draw.line(self.surface, (self.color[0], self.color[1], self.color[2]),
-        (self.pos.x_position, self.pos.y_position), self.length)
+        self.pygame_object = pygame.draw.line(self.surface, (self.color[0], self.color[1], self.color[2]),
+        (self.pos.x_position, self.pos.y_position), self.width)
 
 class Circle(Shape):
     '''class for the properties of a circle'''
     def __init__(self, surface, color, pos, radius):
         Shape.__init__(self, surface, color, pos)
         self.radius = radius
+        self.pygame_object = None
 
     def draw_circle(self):
         '''draws a circle to the screen'''
-        pygame.draw.circle(self.surface, (self.color[0], self.color[1], self.color[2]),
+        self.pygame_object = pygame.draw.circle(self.surface, (self.color[0], self.color[1], self.color[2]),
         (self.pos.x_position, self.pos.y_position), self.radius)

@@ -23,6 +23,7 @@ def main():
     start_node = Rectangle(screen, (0, 255, 0), Vector2(0, 419), 25)
     end_node = Rectangle(screen, (255, 0, 0), Vector2(700, 419), 25)
     graph_visual.gen_visual()
+    a_star = Astar(start_node, end_node, grid)
     draw_path = []
     drag_start = False
     drag_end = False
@@ -75,18 +76,15 @@ def main():
 
             if pygame.key.get_pressed()[pygame.K_SPACE]:
                 pressed_space = True
-                a_star = Astar(start_node, end_node, grid)
                 a_star.path()
             if pressed_space:
                 count = 0
-                other_count = 1
-                while other_count <= len(draw_path) - 1:
-                    path_line = Line(screen, (0, 200, 0), draw_path[count] * 30,
-                                                draw_path[other_count] * 30, 3)
+                while count <= len(draw_path) - 1:
+                    path_line = Line(screen, (0, 200, 0), grid.start_pos[count],
+                                     grid.end_pos[count], 3)
                     draw_path.append(path_line)
                     path_line.draw_line()
                 count += 1
-                other_count += 1
 
             pygame.display.flip()
 
