@@ -27,7 +27,7 @@ class VisualGraph(object):
         for x in range(0, self.graph.width * self.offset, self.offset):
             for y in range(0, self.graph.height * self.offset, self.offset):
                 new_node = VisualNode(self.graph.nodes[count], self.surface,
-                                        Vector2(x, y), [25, 25])
+                                        Vector2(x, y), 25)
                 self.node_visual.append(new_node)
                 count += 1
 
