@@ -1,5 +1,6 @@
 #pylint: disable = E1101
 #pylint: disable = C0330
+#pylint: disable = W0312
 from vector2 import Vector2
 
 class Node(object):
@@ -59,6 +60,16 @@ class Node(object):
     def set_non_trav(self):
         '''sets a node to be non traversable'''
         self.is_traversable = False
+
+    def get_x(self):
+        '''function to return the x position of the vector'''
+        x_pos = self.position.x_position
+        return x_pos
+
+    def get_y(self):
+        '''function to return the y position of the vector'''
+    	y_pos = self.position.y_position
+        return y_pos
 
 
 

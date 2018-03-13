@@ -61,7 +61,6 @@ class Astar(object):
         while self.current_node.parent is not None:
             paths.append(self.current_node)
             self.current_node = self.current_node.parent
-        paths.append(self.current_node.parent)
         self.paths = paths
 
     def display_graph(self):

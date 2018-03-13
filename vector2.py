@@ -49,7 +49,7 @@ class Vector2:
     		'''normalizes the vector'''
 		vec = Vector2(self.x_position /  self.magnitude(),
 					  self.y_position /  self.magnitude())
-		return vec;
+		return vec
 
 	def output(self):
     		'''outputs the vectors into the console'''
