@@ -10,16 +10,27 @@ class VisualNode(object):
     '''class to see the node on the grid'''
     def __init__(self, node, surface, pos, scale):
         self.node = node
-        self.shape = Rectangle(surface, (0, 0, 0), pos, scale)
+        self.shape = Rectangle(surface, (255, 255, 255), pos, scale)
         self.is_start = False
         self.is_goal = False
-        self.open_list = False
-        self.closed_list = False
+        self.is_open_list = False
+        self.is_closed_list = False
+        self.is_path = False
 
-    def update(self):
+    def update(self,events):
         '''updtaes the nodes every frame'''
-        if self.node.shape.is_start is True:
-            self.node.shape.is_start.change_color((0, 255, 0))
+        if self.is_start is True:
+            self.shape.change_color((0, 255, 0))
+        elif self.is_goal is True:
+            self.shape.change_color((255, 0, 0))
+        elif self.is_closed_list is True:
+            self.shape.change_color((118, 247, 180))
+        elif self.is_open_list is True:
+            self.shape.change_color((117, 173, 247))
+        elif self.is_path is True:
+            self.shape.change_color((255, 225, 0))
+        else:
+            self.shape.change_color((255, 255, 255))
 
     def draw(self):
         '''function to draw the node'''
@@ -29,6 +40,7 @@ class VisualGraph(object):
     '''class to see the grid in the window'''
     def __init__(self, graph, offset, surface):
         self.graph = graph
+        self.graph.create_grid()
         self.offset = offset
         self.surface = surface
         self.node_visual = []
@@ -49,6 +61,14 @@ class VisualGraph(object):
             if visual.node == node:
                 return visual
         return None
+
+    def update(self, events):
+        for node in self.node_visual:
+            node.update(events)
+
+    def draw(self):
+        for node in self.node_visual:
+            node.draw()
 
 class VisualPath(object):
     '''class for giving the visual for the Astar path'''

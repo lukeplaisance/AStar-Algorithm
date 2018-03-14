@@ -6,15 +6,15 @@ from vector2 import Vector2
 
 class Astar(object):
     '''class for the A* algorithm'''
-    def __init__(self, start, end, graph):
+    def __init__(self, graph):
         '''constructor'''
         self.grid = graph
         self.open_list = []
         self.close_list = []
         self.paths = None
-        self.start_node = start
-        self.current_node = start
-        self.end_node = end
+        self.start_node = None
+        self.current_node = None
+        self.end_node = None
 
     def get_current(self):
         '''returns the node with the lowest f_score and makes it the new current'''
@@ -23,6 +23,8 @@ class Astar(object):
         self.current_node = self.open_list[0]
 
     def path(self):
+        if self.start_node is None or self.end_node is None:
+            return
         '''function to find the easiest path to the end node'''
         self.current_node = self.start_node
         #Add the starting square (or node) to the open list.

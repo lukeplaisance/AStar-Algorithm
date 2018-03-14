@@ -20,15 +20,18 @@ class Rectangle(Shape):
     '''class for the properties of a rectangle'''
     def __init__(self, surface, color, pos, scale):
         Shape.__init__(self, surface, color, pos)
-        self.pygame_object = None
         self.scale = scale
         self.rect = pygame.rect.Rect(self.pos.x_position, self.pos.y_position, 25, 25)
+        self.pygame_object = pygame.draw.rect(self.surface, (self.color[0],
+            self.color[1], self.color[2]), (self.pos.x_position, self.pos.y_position,
+            self.scale[0], self.scale[1]))
 
     def draw_rect(self):
         '''draws a square to the screen'''
         self.pygame_object = pygame.draw.rect(self.surface, (self.color[0],
         self.color[1], self.color[2]), (self.pos.x_position, self.pos.y_position,
         self.scale[0], self.scale[1]))
+        self.rect = pygame.rect.Rect(self.pos.x_position, self.pos.y_position, 25, 25)
 
 class Line(Shape):
     '''class for the properties of a line'''
