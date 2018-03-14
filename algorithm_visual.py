@@ -1,5 +1,6 @@
 from visusal_grid import *
 from draggable_node import DragableRect
+from draw_shapes import *
 
 class Visual_Algorithm(object):
     def __init__(self, algorithm, screen):
@@ -8,20 +9,20 @@ class Visual_Algorithm(object):
         self.visusal_grid = VisualGraph(self.algorithm.grid, 35, screen)
         self.visusal_grid.gen_visual()
         self.algorithm.path()
-        self.start_node_visual = DragableRect(self.screen, Vector2(500,500), [25,25], (194, 252, 195))
-        self.end_node_visual = DragableRect(self.screen, Vector2(550,550), [25,25], (252, 194, 194))
+        self.start_node_visual = DragableRect(self.screen, Vector2(500, 500), [25, 25], (93, 255, 115))
+        self.end_node_visual = DragableRect(self.screen, Vector2(550, 550), [25, 25], (252, 130, 65)) 
 
-    def update(self,events):
+    def update(self, events):
         self.visusal_grid.update(events)
         self.start_node_visual.update(events)
         self.end_node_visual.update(events)
         self.set_start_node()
-        self.set_end_node()        
+        self.set_end_node()
         for event in events:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     self.algorithm.path()
-        
+
         for node in self.algorithm.open_list:
             visual = self.visusal_grid.get_visual(node)
             if visual is not None:
@@ -45,7 +46,7 @@ class Visual_Algorithm(object):
     def draw(self):
         self.visusal_grid.draw()
         self.start_node_visual.draw()
-        self.end_node_visual.draw()        
+        self.end_node_visual.draw()
 
     def set_start_node(self):
         if not self.start_node_visual.is_dragged:
@@ -71,4 +72,22 @@ class Visual_Algorithm(object):
                     if old_goal is not None:
                         old_goal.is_goal = False
                         self.algorithm.end_node.is_goal = False
-                    self.algorithm.end_node = node_visual.node                    
+                    self.algorithm.end_node = node_visual.node
+
+    def highlight_path(self):
+        if self.algorithm.path is None:
+            return
+        path_visual_nodes = []
+        for nodes in self.algorithm.path:
+            visual = self.visusal_grid.get_visual(nodes)
+            if visual is not None:
+                path_visual_nodes.append(visual)
+        for visual in path_visual_nodes:
+            parent_visual = self.visusal_grid.get_visual(visual.node.parent)
+            if parent_visual is not None:
+                pygame.draw.lines(self.visusal_grid.surface, (255, 193, 15), True,
+                                  [[visual.shape.position.x_pos + (visual.shape.scale[0] / 2),
+                                  visual.shape.position.y_pos + (visual.shape.scale[1] / 2)],
+                                   [parent_visual.shape.position.x_pos + (parent_visual.shape.scale[0] / 2),
+                                   parent_visual.shape.position.y_pos + (parent_visual.shape.scale[1] / 2)]], 4)
+        return

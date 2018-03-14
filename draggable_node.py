@@ -9,13 +9,13 @@ class DragableRect(object):
         self.is_dragged = False
         self.color = color
 
-    def hoover(self):           
+    def hoover(self):
         if self.shape.rect.collidepoint(pygame.mouse.get_pos()):
             self.shape.change_color((255, 0, 220))
             self.is_hoovered = True
         else:
             self.shape.change_color(self.color)
-            self.is_hoovered = False      
+            self.is_hoovered = False
 
     def pick_up(self, events):
             for event in events:

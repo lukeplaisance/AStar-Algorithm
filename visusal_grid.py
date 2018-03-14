@@ -10,14 +10,14 @@ class VisualNode(object):
     '''class to see the node on the grid'''
     def __init__(self, node, surface, pos, scale):
         self.node = node
-        self.shape = Rectangle(surface, (255, 255, 255), pos, scale)
+        self.shape = Rectangle(surface, (0, 0, 0), pos, scale)
         self.is_start = False
         self.is_goal = False
         self.is_open_list = False
         self.is_closed_list = False
         self.is_path = False
 
-    def update(self,events):
+    def update(self):
         '''updtaes the nodes every frame'''
         if self.is_start is True:
             self.shape.change_color((0, 255, 0))
@@ -64,7 +64,7 @@ class VisualGraph(object):
 
     def update(self, events):
         for node in self.node_visual:
-            node.update(events)
+            node.update()
 
     def draw(self):
         for node in self.node_visual:
