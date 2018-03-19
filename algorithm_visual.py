@@ -1,6 +1,8 @@
 from visusal_grid import *
 from draggable_node import DragableRect
 from draw_shapes import *
+from NodeClass import Node
+import time
 
 class Visual_Algorithm(object):
     def __init__(self, algorithm, screen):
@@ -9,8 +11,9 @@ class Visual_Algorithm(object):
         self.visusal_grid = VisualGraph(self.algorithm.grid, 35, screen)
         self.visusal_grid.gen_visual()
         self.algorithm.path()
-        self.start_node_visual = DragableRect(self.screen, Vector2(500, 500), [25, 25], (93, 255, 115))
-        self.end_node_visual = DragableRect(self.screen, Vector2(550, 550), [25, 25], (252, 130, 65)) 
+        self.start_node_visual = DragableRect(self.screen, Vector2(500, 500), [30, 30], (93, 255, 115))
+        self.end_node_visual = DragableRect(self.screen, Vector2(550, 550), [30,30], (252, 130, 65)) 
+        parent_visual = self.visusal_grid.get_visual(visual.node.parent)
 
     def update(self, events):
         self.visusal_grid.update(events)
@@ -31,8 +34,8 @@ class Visual_Algorithm(object):
             visual = self.visusal_grid.get_visual(node)
             if visual is not None:
                 visual.is_closed_list = True
-        if self.algorithm.paths is not None:
-            for node in self.algorithm.paths:
+        if self.algorithm.path_list is not None:
+            for node in self.algorithm.path_list:
                 visual = self.visusal_grid.get_visual(node)
                 if visual is not None:
                     visual.is_path = True
@@ -75,19 +78,20 @@ class Visual_Algorithm(object):
                     self.algorithm.end_node = node_visual.node
 
     def highlight_path(self):
-        if self.algorithm.path is None:
+        if self.algorithm.path_list is None:
             return
         path_visual_nodes = []
-        for nodes in self.algorithm.path:
-            visual = self.visusal_grid.get_visual(nodes)
+        for node in self.algorithm.path_list:
+            visual = self.visusal_grid.get_visual(node)
             if visual is not None:
                 path_visual_nodes.append(visual)
         for visual in path_visual_nodes:
             parent_visual = self.visusal_grid.get_visual(visual.node.parent)
             if parent_visual is not None:
-                pygame.draw.lines(self.visusal_grid.surface, (255, 193, 15), True,
-                                  [[visual.shape.position.x_pos + (visual.shape.scale[0] / 2),
-                                  visual.shape.position.y_pos + (visual.shape.scale[1] / 2)],
-                                   [parent_visual.shape.position.x_pos + (parent_visual.shape.scale[0] / 2),
-                                   parent_visual.shape.position.y_pos + (parent_visual.shape.scale[1] / 2)]], 4)
+                pygame.draw.lines(self.visusal_grid.surface, (30, 195, 198), True,
+                                  [[visual.shape.pos.x_position + (visual.shape.scale[0] / 2),
+                                  visual.shape.pos.y_position + (visual.shape.scale[1] / 2)],
+                                   [parent_visual.shape.pos.x_position + (parent_visual.shape.scale[0] / 2),
+                                   parent_visual.shape.pos.y_position + (parent_visual.shape.scale[1] / 2)]], 4)
         return
+

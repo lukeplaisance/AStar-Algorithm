@@ -29,7 +29,7 @@ class Application(object):
             self.draw()
 
     def draw(self):
-        self.screen.fill((100, 20, 95))
+        self.screen.fill((55, 0, 65))
         self.visual_algorithm.draw()
         self.visual_algorithm.highlight_path()
         pygame.display.update()

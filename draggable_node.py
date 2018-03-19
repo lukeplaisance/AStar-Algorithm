@@ -29,7 +29,7 @@ class DragableRect(object):
         self.pick_up(events)
         if self.is_dragged:
             mouse_pos = pygame.mouse.get_pos()
-            self.shape.pos = Vector2(mouse_pos[0] - (25 /2), mouse_pos[1] - (25 / 2))
+            self.shape.pos = Vector2(mouse_pos[0] - (30 /2), mouse_pos[1] - (30 / 2))
 
     def draw(self):
         self.shape.draw_rect()

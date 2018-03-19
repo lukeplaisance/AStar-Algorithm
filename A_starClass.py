@@ -11,6 +11,7 @@ class Astar(object):
         self.grid = graph
         self.open_list = []
         self.close_list = []
+        self.path_list = []
         self.paths = None
         self.start_node = None
         self.current_node = None
@@ -59,11 +60,10 @@ class Astar(object):
                         neighbor.calc_g(self.current_node)
                         neighbor.calc_h(self.end_node)
                         neighbor.calc_f()
-        paths = []
         while self.current_node.parent is not None:
-            paths.append(self.current_node)
+            self.path_list.append(self.current_node)
             self.current_node = self.current_node.parent
-        self.paths = paths
+        self.paths = self.path_list
 
     def display_graph(self):
         '''function to display the grid and the path to the goal node'''
