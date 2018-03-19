@@ -1,8 +1,8 @@
+import pygame
 from visusal_grid import *
 from draggable_node import DragableRect
 from draw_shapes import *
 from NodeClass import Node
-import time
 
 class Visual_Algorithm(object):
     def __init__(self, algorithm, screen):
@@ -12,8 +12,7 @@ class Visual_Algorithm(object):
         self.visusal_grid.gen_visual()
         self.algorithm.path()
         self.start_node_visual = DragableRect(self.screen, Vector2(500, 500), [30, 30], (93, 255, 115))
-        self.end_node_visual = DragableRect(self.screen, Vector2(550, 550), [30,30], (252, 130, 65)) 
-        parent_visual = self.visusal_grid.get_visual(visual.node.parent)
+        self.end_node_visual = DragableRect(self.screen, Vector2(550, 550), [30,30], (252, 130, 65))
 
     def update(self, events):
         self.visusal_grid.update(events)
@@ -76,6 +75,10 @@ class Visual_Algorithm(object):
                         old_goal.is_goal = False
                         self.algorithm.end_node.is_goal = False
                     self.algorithm.end_node = node_visual.node
+
+    #def set_wall(self, events):
+     #   for event in events:
+      #      if pygame.MOUSEBUTTONDOWN:
 
     def highlight_path(self):
         if self.algorithm.path_list is None:

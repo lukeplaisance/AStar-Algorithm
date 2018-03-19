@@ -5,7 +5,8 @@ from draw_shapes import Rectangle
 from vector2 import Vector2
 from A_starClass import Astar
 from draw_shapes import Shape
-import time 
+from NodeClass import Node
+import time
 
 class VisualNode(object):
     '''class to see the node on the grid'''
@@ -70,13 +71,4 @@ class VisualGraph(object):
     def draw(self):
         for node in self.node_visual:
             node.draw()
-
-class VisualPath(object):
-    '''class for giving the visual for the Astar path'''
-    def __init__(self, start, end, graph):
-        self.start = start
-        self.end = end
-        self.graph = graph
-
-    
 
