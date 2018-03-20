@@ -7,6 +7,7 @@ from A_starClass import Astar
 from GraphClass import Graph
 
 class Application(object):
+    '''class that runs everythings'''
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((1080, 720))
@@ -16,6 +17,7 @@ class Application(object):
         self.events = []
 
     def update(self):
+        '''updates the appplications each frame'''
         while self.running:
             pygame.event.pump()
             self.events = pygame.event.get()
@@ -29,6 +31,7 @@ class Application(object):
             self.draw()
 
     def draw(self):
+        '''draws the graph a algorithm to the screen'''
         self.screen.fill((55, 0, 65))
         self.visual_algorithm.draw()
         self.visual_algorithm.highlight_path()

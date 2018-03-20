@@ -1,6 +1,8 @@
 import pygame
 from draw_shapes import Rectangle
 from vector2 import Vector2
+from NodeClass import Node
+from visusal_grid import VisualNode
 
 class DragableRect(object):
     def __init__(self, surface, pos, scale, color):
@@ -18,11 +20,11 @@ class DragableRect(object):
             self.is_hoovered = False
 
     def pick_up(self, events):
-            for event in events:
-                if event.type == pygame.MOUSEBUTTONDOWN and self.is_hoovered:
-                    self.is_dragged = True
-                if event.type == pygame.MOUSEBUTTONUP:
-                    self.is_dragged = False
+        for event in events:
+            if event.type == pygame.MOUSEBUTTONDOWN and self.is_hoovered:
+                self.is_dragged = True
+            if event.type == pygame.MOUSEBUTTONUP:
+                self.is_dragged = False
 
     def update(self, events):
         self.hoover()

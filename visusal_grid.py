@@ -18,9 +18,10 @@ class VisualNode(object):
         self.is_open_list = False
         self.is_closed_list = False
         self.is_path = False
+        self.is_wall = False
 
     def update(self):
-        '''updtaes the nodes every frame'''
+        '''updates the nodes every frame'''
         if self.is_start is True:
             self.shape.change_color((0, 255, 0))
         elif self.is_goal is True:
@@ -31,8 +32,18 @@ class VisualNode(object):
             self.shape.change_color((106, 0, 255))
         elif self.is_path is True:
             self.shape.change_color((255, 225, 0))
+        elif self.is_wall is True:
+            self.shape.change_color((180, 180, 180))
         else:
             self.shape.change_color((0, 0, 0))
+
+    def set_wall(self, events):
+        for event in events:
+            if self.shape.rect.collidepoint(pygame.mouse.get_pos()):
+                if event.type == pygame.KEYDOWN:
+                    if event.type == pygame.K_w:
+                        self.node.is_traversable = False
+                        self.is_wall = True
 
     def draw(self):
         '''function to draw the node'''
@@ -67,6 +78,7 @@ class VisualGraph(object):
     def update(self, events):
         for node in self.node_visual:
             node.update()
+            node.set_wall(events)
 
     def draw(self):
         for node in self.node_visual:
