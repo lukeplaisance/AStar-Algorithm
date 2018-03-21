@@ -17,6 +17,10 @@ class Shape(object):
         '''function to change the color of a shape'''
         self.color = color
 
+    def __getitem__(self, index):
+        '''overloading the index operator'''
+        return self.rect[index]
+
 class Rectangle(Shape):
     '''class for the properties of a rectangle'''
     def __init__(self, surface, color, pos, scale):
@@ -70,3 +74,4 @@ class Text(Shape):
     def draw_text(self, rect):
         '''draws the text'''
         pygame_render = self.font.render(self.text, 0, (self.color[0], self.color[1], self.color[2]))
+        self.surface.blit(pygame_render, (rect[0] + self.pos.x_position, rect[1] + self.pos.y_position))
