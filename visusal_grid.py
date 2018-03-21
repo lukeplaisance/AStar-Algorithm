@@ -4,7 +4,7 @@ import pygame
 from draw_shapes import Rectangle
 from vector2 import Vector2
 from A_starClass import Astar
-from draw_shapes import Shape
+from draw_shapes import *
 from NodeClass import Node
 import time
 
@@ -13,6 +13,8 @@ class VisualNode(object):
     def __init__(self, node, surface, pos, scale):
         self.node = node
         self.shape = Rectangle(surface, (0, 0, 0), pos, scale)
+        self.black_square = Rectangle(surface, (50, 50, 50), Vector2(875, 0), [250, 1000])
+        self.words = Text(surface, (255, 255, 255), Vector2(875, 100), "press the W key to place walls", 15)
         self.is_start = False
         self.is_goal = False
         self.is_open_list = False
@@ -20,7 +22,7 @@ class VisualNode(object):
         self.is_path = False
         self.is_wall = False
 
-    def update(self):
+    def update(self, events):
         '''updates the nodes every frame'''
         if self.is_start is True:
             self.shape.change_color((0, 255, 0))
@@ -36,18 +38,21 @@ class VisualNode(object):
             self.shape.change_color((180, 180, 180))
         else:
             self.shape.change_color((0, 0, 0))
-
-    def set_wall(self, events):
-        for event in events:
-            if self.shape.rect.collidepoint(pygame.mouse.get_pos()):
-                if event.type == pygame.KEYDOWN:
-                    if event.type == pygame.K_w:
-                        self.node.is_traversable = False
-                        self.is_wall = True
+        self.toggle_wall(events)
 
     def draw(self):
         '''function to draw the node'''
         self.shape.draw_rect()
+        self.black_square.draw_rect()
+
+    def toggle_wall(self, events):
+        '''places a wall on the grid when you press the "w"" key'''
+        if self.shape.rect.collidepoint(pygame.mouse.get_pos()):
+            for event in events:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w:
+                        self.is_wall = not self.is_wall
+                        self.node.is_traversable = not self.node.is_traversable
 
 class VisualGraph(object):
     '''class to see the grid in the window'''
@@ -77,10 +82,10 @@ class VisualGraph(object):
 
     def update(self, events):
         for node in self.node_visual:
-            node.update()
-            node.set_wall(events)
+            node.update(events)
 
     def draw(self):
         for node in self.node_visual:
             node.draw()
+
 
