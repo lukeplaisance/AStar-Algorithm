@@ -95,4 +95,3 @@ class Visual_Algorithm(object):
                                    [parent_visual.shape.pos.x_position + (parent_visual.shape.scale[0] / 2),
                                    parent_visual.shape.pos.y_position + (parent_visual.shape.scale[1] / 2)]], 4)
         return
-

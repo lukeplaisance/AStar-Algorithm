@@ -1,6 +1,7 @@
 #pylint: disable = E1101
 #pylint: disable = C0330
 import pygame
+import os
 from visusal_grid import *
 from algorithm_visual import Visual_Algorithm
 from A_starClass import Astar
@@ -31,8 +32,8 @@ class Application(object):
             self.draw()
 
     def draw(self):
-        '''draws the graph a algorithm to the screen'''
-        self.screen.fill((55, 0, 65))
+        '''draws the graph and algorithm to the screen'''
+        self.screen.fill((0, 0, 0))
         self.visual_algorithm.draw()
         self.visual_algorithm.highlight_path()
         pygame.display.update()

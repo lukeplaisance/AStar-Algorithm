@@ -13,8 +13,9 @@ class VisualNode(object):
     def __init__(self, node, surface, pos, scale):
         self.node = node
         self.shape = Rectangle(surface, (0, 0, 0), pos, scale)
-        self.black_square = Rectangle(surface, (50, 50, 50), Vector2(875, 0), [250, 1000])
-        self.words = Text(surface, (255, 255, 255), Vector2(875, 100), "press the W key to place walls", 15)
+        self.start_node_text = Text(surface, (255, 255, 255), Vector2(940, 400), "start node", 18)
+        self.end_node_text = Text(surface, (255, 255, 255), Vector2(940, 450), "end node", 18)
+        self.title_text = Text(surface, (255, 255, 255), Vector2(900, 15), "A_star", 50)
         self.is_start = False
         self.is_goal = False
         self.is_open_list = False
@@ -35,15 +36,17 @@ class VisualNode(object):
         elif self.is_path is True:
             self.shape.change_color((255, 225, 0))
         elif self.is_wall is True:
-            self.shape.change_color((180, 180, 180))
-        else:
             self.shape.change_color((0, 0, 0))
+        else:
+            self.shape.change_color((180, 180, 180))
         self.toggle_wall(events)
 
     def draw(self):
         '''function to draw the node'''
         self.shape.draw_rect()
-        self.black_square.draw_rect()
+        self.title_text.draw()
+        self.start_node_text.draw()
+        self.end_node_text.draw()
 
     def toggle_wall(self, events):
         '''places a wall on the grid when you press the "w"" key'''

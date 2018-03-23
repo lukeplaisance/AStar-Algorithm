@@ -57,19 +57,4 @@ class Node(object):
         self.f_score = self.g_score + self.h_score
         return self.f_score
 
-    def set_non_trav(self):
-        '''sets a node to be non traversable'''
-        self.is_traversable = False
-
-    def get_x(self):
-        '''function to return the x position of the vector'''
-        x_pos = self.position.x_position
-        return x_pos
-
-    def get_y(self):
-        '''function to return the y position of the vector'''
-    	y_pos = self.position.y_position
-        return y_pos
-
-
 

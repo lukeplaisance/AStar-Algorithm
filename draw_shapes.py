@@ -68,10 +68,16 @@ class Text(Shape):
         Shape.__init__(self, surface, color, pos)
         self.text = text
         self.size = size
-        self.font = pygame.font.SysFont('arial', self.size)
-        self.pygame_render = None
+        self.font = pygame.font.SysFont('aharoni', self.size)
+        render = self.font.render(self.text, 0, (self.color[0], self.color[1], self.color[2]))
+        self.surface.blit(render, (self.pos.x_position, self.pos.y_position))
+
+    def draw(self):
+        '''draws text to the screen'''
+        render = self.font.render(self.text, 0, (self.color[0], self.color[1], self.color[2]))
+        self.surface.blit(render, (self.pos.x_position, self.pos.y_position))
 
     def draw_text(self, rect):
-        '''draws the text'''
-        pygame_render = self.font.render(self.text, 0, (self.color[0], self.color[1], self.color[2]))
-        self.surface.blit(pygame_render, (rect[0] + self.pos.x_position, rect[1] + self.pos.y_position))
+        '''draws the text onto another drawn object'''
+        render = self.font.render(self.text, 0, (self.color[0], self.color[1], self.color[2]))
+        self.surface.blit(render, (rect[0] + self.pos.x_position, rect[1] + self.pos.y_position))
