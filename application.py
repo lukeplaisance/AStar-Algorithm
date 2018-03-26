@@ -26,6 +26,8 @@ class Application(object):
                 if event.type == pygame.QUIT:
                     return
                 if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_r:
+                        self.visual_algorithm.clear_path(self.events)
                     if event.key == pygame.K_ESCAPE:
                         return
             self.visual_algorithm.update(self.events)
@@ -40,6 +42,7 @@ class Application(object):
         pygame.display.flip()
 
 def main():
+    '''main function to run the application'''
     app = Application()
     app.update()
 

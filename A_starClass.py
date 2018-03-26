@@ -6,6 +6,12 @@ from vector2 import Vector2
 
 class Astar(object):
     '''class for the A* algorithm'''
+    #Prototype : def __init__(self, graph)
+    #Argument : self, graph
+    #Description : constructor to create the algorithm path
+    #Precondition : none
+    #Postcondition : constructor to create the algorithm path
+    #Protection Level : Public
     def __init__(self, graph):
         '''constructor'''
         self.grid = graph
@@ -17,12 +23,40 @@ class Astar(object):
         self.current_node = None
         self.end_node = None
 
+    #Prototype : def reset_path(self)
+    #Argument : self
+    #Description : resets the a_star values back to default
+    #Precondition : an instance of the A_star class
+    #Postcondition : resets the a_star values back to default
+    #Protection Level : Public
+    def reset_path(self):
+        '''ressets the path to default settings'''
+        self.open_list = []
+        self.close_list = []
+        self.path_list = []
+        self.paths = None
+        self.start_node = None
+        self.current_node = None
+        self.end_node = None
+
+    #Prototype : def get_current(self)
+    #Argument : self
+    #Description : returns the node with the lowest f_score and makes it the new current
+    #Precondition : an instance of the A_star class
+    #Postcondition : returns the node with the lowest f_score and makes it the new current
+    #Protection Level : Public
     def get_current(self):
         '''returns the node with the lowest f_score and makes it the new current'''
         #add the starting node to the open_list
         self.open_list.sort(key=lambda x: x.f_score)
         self.current_node = self.open_list[0]
 
+    #Prototype : def path(self)
+    #Argument : self
+    #Description : function that follows the algorithm to make the path
+    #Precondition : an instance of the A_star class
+    #Postcondition : function that follows the algorithm to make the path
+    #Protection Level : Public
     def path(self):
         if self.start_node is None or self.end_node is None:
             return
@@ -65,6 +99,12 @@ class Astar(object):
             self.current_node = self.current_node.parent
         self.paths = self.path_list
 
+    #Prototype : def display_graph(self)
+    #Argument : self
+    #Description : displays a visual of the algorithm in the console
+    #Precondition : an instance of the A_star class
+    #Postcondition : displays a visual of the algorithm in the console 
+    #Protection Level : Public
     def display_graph(self):
         '''function to display the grid and the path to the goal node'''
         line = ""

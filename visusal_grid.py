@@ -23,6 +23,13 @@ class VisualNode(object):
         self.is_path = False
         self.is_wall = False
 
+    def reset_visual(self):
+        '''resets the visuals to default'''
+        self.is_open_list = False
+        self.is_closed_list = False
+        self.is_path = False
+        self.is_wall = False
+
     def update(self, events):
         '''updates the nodes every frame'''
         if self.is_start is True:
@@ -84,10 +91,12 @@ class VisualGraph(object):
         return None
 
     def update(self, events):
+        '''updates the visual nodes every frame'''
         for node in self.node_visual:
             node.update(events)
 
     def draw(self):
+        '''draws the visual nodes to the screen'''
         for node in self.node_visual:
             node.draw()
 

@@ -5,6 +5,12 @@ from vector2 import Vector2
 
 class Node(object):
     '''class that creates the nodes and its properties'''
+    #Prototype : def __init__(self, pos)
+    #Argument : self, pos
+    #Description : constructor for the Node class
+    #Precondition : none
+    #Postcondition : 
+    #Protection Level : Public
     def __init__(self, pos):
         '''constructor'''
         self.position = pos
@@ -16,11 +22,23 @@ class Node(object):
         self.is_goal = False
         self.is_start = False
 
+    #Prototype : def set_parent(self, pos)
+    #Argument : self, other
+    #Description : sets the parent of a node to another
+    #Precondition : an instance of the Node class
+    #Postcondition : sets the parent of a node to another
+    #Protection Level : Public
     def set_parent(self, other):
         '''sets the parent of a node to another'''
         self.parent = other
         return self.parent
 
+    #Prototype : def calc_g(self, pos)
+    #Argument : self, other
+    #Description : returns the G score of the node
+    #Precondition : an instance of the Node class
+    #Postcondition : returns the G score of the node
+    #Protection Level : Public
     def calc_g(self, other):
         '''returns the G score of the node'''
         if self.parent is None:
@@ -44,6 +62,12 @@ class Node(object):
                 self.g_score = tent_g
                 self.set_parent(other)
 
+    #Prototype : def calc_h(self, pos)
+    #Argument : self, other
+    #Description : returns the H score of the node
+    #Precondition : an instance of the Node class
+    #Postcondition : returns the H score of the node
+    #Protection Level : Public
     def calc_h(self, other):
         '''returns the H score of the node'''
         x_distance = abs(other.position.x_position - self.position.x_position)
@@ -52,6 +76,12 @@ class Node(object):
         self.h_score = total * 10
         return self.h_score
 
+    #Prototype : def calc_f(self, pos)
+    #Argument : self, other
+    #Description : returns the F score of the node
+    #Precondition : an instance of the Node class
+    #Postcondition : returns the F score of the node
+    #Protection Level : Public
     def calc_f(self):
         '''returns the F score of the node'''
         self.f_score = self.g_score + self.h_score
