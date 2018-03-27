@@ -12,7 +12,7 @@ class Shape(object):
     #Argument : self, surface, color, pos
     #Description : default class for all shapes
     #Precondition : none
-    #Postcondition :  default class for all shapes 
+    #Postcondition :  default class for all shapes
     #Protection Level : Public
     def __init__(self, surface, color, pos):
         self.pos = pos
@@ -33,7 +33,7 @@ class Shape(object):
 	#Argument : self, index
     #Description : overloading the index operator
 	#Precondition : an instance of the Shape class
-	#Postcondition :  overloading the index operator 
+	#Postcondition :  overloading the index operator
 	#Protection Level : Public
     def __getitem__(self, index):
         '''overloading the index operator'''
@@ -45,7 +45,7 @@ class Rectangle(Shape):
     #Argument : self, surface, color, pos, scale
     #Description : initializes the properties of a rectangle
     #Precondition : an instance of the Shape class
-    #Postcondition :  initializes the properties of a rectangle 
+    #Postcondition :  initializes the properties of a rectangle
     #Protection Level : Public
     def __init__(self, surface, color, pos, scale):
         Shape.__init__(self, surface, color, pos)
@@ -59,7 +59,7 @@ class Rectangle(Shape):
 	#Argument : self
 	#Description : draws the square to the screen
 	#Precondition : an instance of the Shape class
-	#Postcondition :  draws the square to the screen 
+	#Postcondition :  draws the square to the screen
 	#Protection Level : Public
     def draw_rect(self):
         '''draws a square to the screen'''
@@ -85,7 +85,7 @@ class Line(Shape):
 	#Argument : self
 	#Description : draws a line to the screen
 	#Precondition : an instance of the Shape class
-	#Postcondition :  draws a square to the screen 
+	#Postcondition :  draws a square to the screen
 	#Protection Level : Public
     def draw_line(self):
         '''draws a line to the screen'''
@@ -98,7 +98,7 @@ class Circle(Shape):
 	#Argument : self, surface, color, pos, radius
 	#Description : initializes the properties of a circle
 	#Precondition : an instance of the Shape class
-	#Postcondition :  initializes the properties of a circle 
+	#Postcondition :  initializes the properties of a circle
 	#Protection Level : Public
     def __init__(self, surface, color, pos, radius):
         Shape.__init__(self, surface, color, pos)
@@ -109,7 +109,7 @@ class Circle(Shape):
 	#Argument : self
 	#Description : draws the circle to the screen
 	#Precondition : an instance of the Shape class
-	#Postcondition :  draws the circle to the screen 
+	#Postcondition :  draws the circle to the screen
 	#Protection Level : Public
     def draw_circle(self):
         '''draws a circle to the screen'''
@@ -122,7 +122,7 @@ class Text(Shape):
 	#Argument : self, surface, color, pos, text, size
 	#Description : initializes the properties of text
 	#Precondition : an instance of the Shape class
-	#Postcondition :  initializes the properties of text 
+	#Postcondition :  initializes the properties of text
 	#Protection Level : Public
     def __init__(self, surface, color, pos, text, size):
         Shape.__init__(self, surface, color, pos)
@@ -136,20 +136,20 @@ class Text(Shape):
 	#Argument : self
 	#Description : draws text to the screen
 	#Precondition : an instance of the Shape class
-	#Postcondition :  draws text to the screen 
+	#Postcondition :  draws text to the screen
 	#Protection Level : Public
     def draw(self):
         '''draws text to the screen'''
         render = self.font.render(self.text, 0, (self.color[0], self.color[1], self.color[2]))
         self.surface.blit(render, (self.pos.x_position, self.pos.y_position))
 
-    #Prototype : def draw_text(self)
+    #Prototype : def draw_over_text(self)
 	#Argument : self
 	#Description : draws text onto another surface
 	#Precondition : an instance of the Shape class
 	#Postcondition :  draws text onto another surface
     #Protection Level : Public
-    def draw_text(self, rect):
+    def draw_over_text(self, rect):
         '''draws the text onto another drawn object'''
         render = self.font.render(self.text, 0, (self.color[0], self.color[1], self.color[2]))
         self.surface.blit(render, (rect[0] + self.pos.x_position, rect[1] + self.pos.y_position))

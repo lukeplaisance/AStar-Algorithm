@@ -55,10 +55,10 @@ class Astar(object):
     #Postcondition : function that follows the algorithm to make the path
     #Protection Level : Public
     def path(self):
+        '''function to find the easiest path to the end node'''
         if self.start_node is None or self.end_node is None:
             return
         self.reset_path()
-        '''function to find the easiest path to the end node'''
         self.current_node = self.start_node
         #Add the starting square (or node) to the open list.
         self.open_list.append(self.current_node)
@@ -101,7 +101,7 @@ class Astar(object):
     #Argument : self
     #Description : displays a visual of the algorithm in the console
     #Precondition : an instance of the A_star class
-    #Postcondition : displays a visual of the algorithm in the console 
+    #Postcondition : displays a visual of the algorithm in the console
     #Protection Level : Public
     def display_graph(self):
         '''function to display the grid and the path to the goal node'''

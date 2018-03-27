@@ -39,7 +39,6 @@ class VisualNode(object):
         self.is_open_list = False
         self.is_closed_list = False
         self.is_path = False
-        self.is_wall = False
         self.node.parent = None
 
     #Prototype : def update(self, events)
