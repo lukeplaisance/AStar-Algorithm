@@ -1,8 +1,6 @@
 import pygame
 from draw_shapes import Rectangle
 from vector2 import Vector2
-from NodeClass import Node
-from visusal_grid import VisualNode
 
 class DragableRect(object):
     '''class to drag the start and end node'''

@@ -3,10 +3,7 @@
 import pygame
 from draw_shapes import Rectangle
 from vector2 import Vector2
-from A_starClass import Astar
 from draw_shapes import *
-from NodeClass import Node
-import time
 
 class VisualNode(object):
     '''class to see the node on the grid'''

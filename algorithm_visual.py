@@ -1,8 +1,7 @@
 import pygame
-from visusal_grid import *
+from visusal_grid import VisualGraph
 from draggable_node import DragableRect
-from draw_shapes import *
-from NodeClass import Node
+from vector2 import Vector2
 
 class Visual_Algorithm(object):
     '''class to show the algorithm in the pygame window'''

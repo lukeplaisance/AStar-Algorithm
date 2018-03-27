@@ -1,7 +1,6 @@
 #pylint: disable = E1101
 #pylint: disable = C0330
 #pylint: disable = W0312
-from vector2 import Vector2
 
 class Node(object):
     '''class that creates the nodes and its properties'''
@@ -9,7 +8,7 @@ class Node(object):
     #Argument : self, pos
     #Description : constructor for the Node class
     #Precondition : none
-    #Postcondition : 
+    #Postcondition : constructor for the Node class
     #Protection Level : Public
     def __init__(self, pos):
         '''constructor'''

@@ -1,8 +1,6 @@
 #pylint: disable = E1101
 #pylint: disable = C0330
 import pygame
-import os
-from visusal_grid import *
 from algorithm_visual import Visual_Algorithm
 from A_starClass import Astar
 from GraphClass import Graph

@@ -1,10 +1,6 @@
 #pylint: disable = E1101
 #pylint: disable = C0330
-import math
 import pygame
-from vector2 import Vector2
-from NodeClass import Node
-from GraphClass import Graph
 
 class Shape(object):
     '''default class for all shapes'''
