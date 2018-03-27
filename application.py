@@ -9,6 +9,12 @@ from GraphClass import Graph
 
 class Application(object):
     '''class that runs everythings'''
+    #Prototype : def __init__(self)
+	#Argument : self
+	#Description : class that runs everything
+	#Precondition : none
+	#Postcondition :  class that runs everything
+	#Protection Level : Public
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((1080, 720))
@@ -17,6 +23,12 @@ class Application(object):
         self.running = True
         self.events = []
 
+    #Prototype : def update(self)
+	#Argument : self
+	#Description : updates the drawings and path each frame
+	#Precondition : an instance of the Application class
+	#Postcondition :  updates the drawings and path each frame
+	#Protection Level : Public
     def update(self):
         '''updates the appplications each frame'''
         while self.running:
@@ -33,14 +45,27 @@ class Application(object):
             self.visual_algorithm.update(self.events)
             self.draw()
 
+    #Prototype : def draw(self)
+	#Argument : self
+	#Description : draws the graph and algorithm to the screen
+	#Precondition : an instance of the Application class
+	#Postcondition :  draws the graph and algorithm to the screen
+	#Protection Level : Public
     def draw(self):
         '''draws the graph and algorithm to the screen'''
-        self.screen.fill((0, 0, 0))
-        self.visual_algorithm.draw()
-        self.visual_algorithm.highlight_path()
-        pygame.display.update()
-        pygame.display.flip()
+        if self.events is not None:
+            self.screen.fill((0, 0, 0))
+            self.visual_algorithm.draw()
+            self.visual_algorithm.highlight_path()
+            pygame.display.update()
+            pygame.display.flip()
 
+#Prototype : def main()
+#Argument : none
+#Description : main function to run the application
+#Precondition : an instance of the Application class
+#Postcondition :  main function to run the application
+#Protection Level : Public
 def main():
     '''main function to run the application'''
     app = Application()

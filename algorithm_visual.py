@@ -40,6 +40,8 @@ class Visual_Algorithm(object):
         for event in events:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
+                    for node in self.visual_grid.node_visual:
+                        node.reset_visual()
                     self.algorithm.path()
 
         for node in self.algorithm.open_list:
@@ -129,7 +131,7 @@ class Visual_Algorithm(object):
 
      #Prototype : def highlight_path(self)
 	 #Argument : self
-	 #Description : gives the algorithm path a visual 
+	 #Description : gives the algorithm path a visual
 	 #Precondition : an instance of the Visual Algorithm class
 	 #Postcondition :  gives the algorithm path a visual
 	 #Protection Level : Public

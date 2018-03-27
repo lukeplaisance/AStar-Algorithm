@@ -34,10 +34,7 @@ class Astar(object):
         self.open_list = []
         self.close_list = []
         self.path_list = []
-        self.paths = None
-        self.start_node = None
-        self.current_node = None
-        self.end_node = None
+        self.paths = []
 
     #Prototype : def get_current(self)
     #Argument : self
@@ -60,6 +57,7 @@ class Astar(object):
     def path(self):
         if self.start_node is None or self.end_node is None:
             return
+        self.reset_path()
         '''function to find the easiest path to the end node'''
         self.current_node = self.start_node
         #Add the starting square (or node) to the open list.

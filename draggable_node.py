@@ -21,9 +21,9 @@ class DragableRect(object):
 
     #Prototype : def hover(self)
     #Argument : self
-    #Description : changes the node’s color if the mouse is hovered over
+    #Description : changes the node's' color if the mouse is hovered over
     #Precondition : an instance of the DraggableRect class
-    #Postcondition : changes the node’s color if the mouse is hovered over
+    #Postcondition : changes the node's' color if the mouse is hovered over
     #Protection Level : Public
     def hover(self):
         '''function to change the color of the node when the mouse is over it'''
@@ -50,9 +50,9 @@ class DragableRect(object):
 
     #Prototype : def update(self, events)
     #Argument : self, events
-    #Description : updates the mouse’s position and keeps track if the node is dragged
+    #Description : updates the mouse's position and keeps track if the node is dragged
     #Precondition : an instance of the DraggableRect class
-    #Postcondition : updates the mouse’s position and keeps track if the node is dragged
+    #Postcondition : updates the mouse's position and keeps track if the node is dragged
     #Protection Level : Public
     def update(self, events):
         '''updates the mouse position for the start and end node'''

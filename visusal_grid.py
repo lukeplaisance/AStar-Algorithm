@@ -10,12 +10,17 @@ import time
 
 class VisualNode(object):
     '''class to see the node on the grid'''
+    #Prototype : def __init__(self, surface, pos, scale)
+	#Argument : self, surface, color, pos, text, size
+	#Description : class to visualize the nodes
+	#Precondition : none
+	#Postcondition :  class to visualize the nodes
+	#Protection Level : Public
     def __init__(self, node, surface, pos, scale):
         self.node = node
         self.shape = Rectangle(surface, (0, 0, 0), pos, scale)
         self.start_node_text = Text(surface, (255, 255, 255), Vector2(940, 400), "start node", 18)
         self.end_node_text = Text(surface, (255, 255, 255), Vector2(940, 450), "end node", 18)
-        self.title_text = Text(surface, (255, 255, 255), Vector2(900, 15), "A_star", 50)
         self.is_start = False
         self.is_goal = False
         self.is_open_list = False
@@ -23,13 +28,26 @@ class VisualNode(object):
         self.is_path = False
         self.is_wall = False
 
+    #Prototype : def reset_viusal(self)
+	#Argument : self
+	#Description : resets the visuals to default
+	#Precondition : an instance of the VisualNode class
+	#Postcondition :  resets the visuals to default
+	#Protection Level : Public
     def reset_visual(self):
         '''resets the visuals to default'''
         self.is_open_list = False
         self.is_closed_list = False
         self.is_path = False
         self.is_wall = False
+        self.node.parent = None
 
+    #Prototype : def update(self, events)
+	#Argument : self, events
+	#Description : updates the nodes every frame
+	#Precondition : an instance of the VisualNode class
+	#Postcondition :  updates the nodes every frame
+	#Protection Level : Public
     def update(self, events):
         '''updates the nodes every frame'''
         if self.is_start is True:
@@ -48,13 +66,24 @@ class VisualNode(object):
             self.shape.change_color((180, 180, 180))
         self.toggle_wall(events)
 
+    #Prototype : def draw(self)
+	#Argument : self
+	#Description : function to draw the nodes
+	#Precondition : an instance of the VisualNode class
+	#Postcondition :  draws the nodes
+	#Protection Level : Public
     def draw(self):
         '''function to draw the node'''
         self.shape.draw_rect()
-        self.title_text.draw()
         self.start_node_text.draw()
         self.end_node_text.draw()
 
+    #Prototype : def toggle_wall(self, events)
+	#Argument : self, events
+	#Description : places a wall on the grid when you press the "w" key
+	#Precondition : an instance of the VisualNode class
+	#Postcondition :  places a wall on the grid when you press the "w" key
+	#Protection Level : Public
     def toggle_wall(self, events):
         '''places a wall on the grid when you press the "w"" key'''
         if self.shape.rect.collidepoint(pygame.mouse.get_pos()):
@@ -66,6 +95,12 @@ class VisualNode(object):
 
 class VisualGraph(object):
     '''class to see the grid in the window'''
+    #Prototype : def __init__(self, graph, offset, surface)
+	#Argument : self, graph, offset, surface
+	#Description : class to see the grid in the pygame window
+	#Precondition : none
+	#Postcondition :  class to see the grid in the pygame window
+	#Protection Level : Public
     def __init__(self, graph, offset, surface):
         self.graph = graph
         self.graph.create_grid()
@@ -83,6 +118,12 @@ class VisualGraph(object):
                 self.node_visual.append(new_node)
                 count += 1
 
+    #Prototype : def gen_visual(self)
+	#Argument : self
+	#Description : generates the visual grid
+	#Precondition : an instance of the VisualGrpah class
+	#Postcondition :  generates the visual grid
+	#Protection Level : Public
     def get_visual(self, node):
         '''gets the visual from the node_visual list'''
         for visual in self.node_visual:
@@ -90,11 +131,23 @@ class VisualGraph(object):
                 return visual
         return None
 
+    #Prototype : def get_visual(self, node)
+	#Argument : self, node
+	#Description : gets the visual from the node_visual list
+	#Precondition : an instance of the VisualGrpah class
+	#Postcondition :  gets the visual from the node_visual list
+	#Protection Level : Public
     def update(self, events):
         '''updates the visual nodes every frame'''
         for node in self.node_visual:
             node.update(events)
 
+    #Prototype : def get_visual(self, events)
+	#Argument : self, events
+	#Description : updates the visual nodes every frame
+	#Precondition : an instance of the VisualGrpah class
+	#Postcondition :  updates the visual nodes every frame
+	#Protection Level : Public
     def draw(self):
         '''draws the visual nodes to the screen'''
         for node in self.node_visual:
